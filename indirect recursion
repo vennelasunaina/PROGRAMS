@@ -1,0 +1,30 @@
+public class Main {
+
+    static boolean subset(int[] a, int n, int target) {
+        // Base case: target achieved
+        if (target == 0) {
+            return true;
+        }
+
+        // Base case: no elements left
+        if (n == 0) {
+            return false;
+        }
+
+        // If current element is greater than target, skip it
+        if (a[n - 1] > target) {
+            return subset(a, n - 1, target);
+        }
+
+        // Include OR exclude the current element
+        return subset(a, n - 1, target) ||
+               subset(a, n - 1, target - a[n - 1]);
+    }
+
+    public static void main(String[] args) {
+        int[] a = {2, 5, 8, 6, 3, 4};
+        int target = 49;
+
+        System.out.println(subset(a, a.length, target));
+    }
+}
